@@ -22,11 +22,11 @@ export default function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Only redirect if not already on /auth
-    if (!auth.isAuthenticated && !location.pathname.startsWith('/auth')) {
-      navigate('/auth?next=');
-    }
-  }, [auth.isAuthenticated, next, location.pathname]);
+  if (!auth.isAuthenticated && !location.pathname.startsWith('/auth')) {
+    navigate(`/auth?next=${location.pathname}`);
+  }
+}, [auth.isAuthenticated, location.pathname]);
+
 
   return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
     <Navbar />
